@@ -1,0 +1,21 @@
+1、单例模式
+class Solution {
+    private volatile static Solution instance= null;
+    private Solution(){}
+    /**
+     * @return: The same instance of this class every time
+     */
+    public static Solution getInstance() {
+        // write your code here
+        //判断是否为空
+        if(instance== null){
+            //同步锁，每次释放可返回内存
+            synchronized(Solution.class){
+                if(instance== null){
+                    instance = new Solution();
+                }
+            }
+        }
+        return instance;
+    }
+};
